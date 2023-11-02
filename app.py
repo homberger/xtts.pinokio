@@ -104,7 +104,6 @@ gr.Interface(
         ),
         gr.Audio(
             label="Reference Audio",
-            info="Click on the ✎ button to upload your own target speaker audio",
             type="filepath",
             value="examples/female.wav",
         ),
