@@ -52,7 +52,7 @@
     {
       "method": "shell.enter",
       "params": {
-        "message": "pip install --upgrade pip",
+        "message": "python -m pip install --upgrade pip",
         "on": [
           {
             "event": null,
