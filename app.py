@@ -13,23 +13,20 @@ torch.set_default_device(device)
 tts = TTS("tts_models/multilingual/multi-dataset/xtts_v1.1", gpu=True)
 tts.to(device)
 
-def predict(prompt, language, audio_file_pth, agree):
-    if agree == True:
-        tts.tts_to_file(
-            text=prompt,
-            file_path="output.wav",
-            speaker_wav=audio_file_pth,
-            language=language,
-        )
+def predict(prompt, language, audio_file_pth):
+    tts.tts_to_file(
+        text=prompt,
+        file_path="output.wav",
+        speaker_wav=audio_file_pth,
+        language=language,
+    )
 
-        return (
-            gr.make_waveform(
-                audio="output.wav",
-            ),
-            "output.wav",
-        )
-    else:
-        gr.Warning("Please accept the Terms & Condition!")
+    return (
+        gr.make_waveform(
+            audio="output.wav",
+        ),
+        "output.wav",
+    )
 
 
 title = "Coqui🐸 XTTS"
@@ -110,11 +107,6 @@ gr.Interface(
             info="Click on the ✎ button to upload your own target speaker audio",
             type="filepath",
             value="examples/female.wav",
-        ),
-        gr.Checkbox(
-            label="Agree",
-            value=False,
-            info="I agree to the terms of the Coqui Public Model License at https://coqui.ai/cpml",
         ),
     ],
     outputs=[
